@@ -21,7 +21,11 @@ public class Main {
       fileHandler.addTodo(new Todo("Do the project", false));
     }*/
 
-    
+    if (args[0].equals("-r")) {
+    fileHandler.removeTodo(6);
+    }
+
+
 
 
   }

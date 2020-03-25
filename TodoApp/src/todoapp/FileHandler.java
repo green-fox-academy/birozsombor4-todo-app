@@ -11,23 +11,10 @@ public class FileHandler {
   private Path fileLocation = Paths.get("files/tasks.txt");
   private List<Todo> todos = new ArrayList<>();
 
-  public void addTodo(Todo newTodo) {
-    todos.add(newTodo);
-    writeTodosToTheFile();
-  }
-
-  private void writeTodosToTheFile() {
-    try {
-      Files.write(fileLocation, convertListOfTodosToListOfString(this.todos));
-    } catch (IOException e) {
-      System.out.println("Something went wrong with writing.");
-    }
-  }
-
-
   public List<Todo> getTodos() {
     return todos;
   }
+
 
   public void intitAllTodosFromFile() {
     todos = readAllTodo();
@@ -63,6 +50,19 @@ public class FileHandler {
     return todoHolder;
   }
 
+  public void addTodo(Todo newTodo) {
+    todos.add(newTodo);
+    writeTodosToTheFile();
+  }
+
+  private void writeTodosToTheFile() {
+    try {
+      Files.write(fileLocation, convertListOfTodosToListOfString(this.todos));
+    } catch (IOException e) {
+      System.out.println("Something went wrong with writing.");
+    }
+  }
+
   private List<String> convertListOfTodosToListOfString(List<Todo> todos) {
     List<String> lines = new ArrayList<>();
     for (Todo todo : todos) {
@@ -74,6 +74,11 @@ public class FileHandler {
   private String convertATodoToAString(Todo todo) {
     String line = (todo.isItCompleted() ? "X" : "O") + ";" + todo.getDescription();
     return line;
+  }
+
+  public void removeTodo(int whichTodo){
+    this.todos.remove(whichTodo-1);
+    writeTodosToTheFile();
   }
 
 
