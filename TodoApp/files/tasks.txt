@@ -1,0 +1,5 @@
+X;Walk the dog
+O;Buy milk
+X;Do homework
+O;Feed the monkey
+X;Buy banana
