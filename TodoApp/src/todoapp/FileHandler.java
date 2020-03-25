@@ -30,7 +30,7 @@ public class FileHandler {
     return convertListOfStringsToListOfTodo(lines);
   }
 
-  private List<Todo> convertListOfStringsToListOfTodo(List<String> lines) {
+  public List<Todo> convertListOfStringsToListOfTodo(List<String> lines) {
     List<Todo> todos = new ArrayList<>();
     for (String line : lines) {
       todos.add(convertAStringToATodo(line));
@@ -38,7 +38,7 @@ public class FileHandler {
     return todos;
   }
 
-  private Todo convertAStringToATodo(String line) {
+  public Todo convertAStringToATodo(String line) {
     Todo todoHolder = new Todo();
     String[] boolAndDesc = line.split(";");
     if (boolAndDesc[0].equals("X")) {
@@ -63,7 +63,7 @@ public class FileHandler {
     }
   }
 
-  private List<String> convertListOfTodosToListOfString(List<Todo> todos) {
+  public List<String> convertListOfTodosToListOfString(List<Todo> todos) {
     List<String> lines = new ArrayList<>();
     for (Todo todo : todos) {
       lines.add(convertATodoToAString(todo));
@@ -71,7 +71,7 @@ public class FileHandler {
     return lines;
   }
 
-  private String convertATodoToAString(Todo todo) {
+  public String convertATodoToAString(Todo todo) {
     String line = (todo.isItCompleted() ? "X" : "O") + ";" + todo.getDescription();
     return line;
   }

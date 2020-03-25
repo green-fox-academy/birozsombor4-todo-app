@@ -1,5 +1,5 @@
-X;Walk the dog
-O;Do homework
-X;Feed the monkey
+O;Walk the dog
+X;Do homework
+O;Feed the monkey
 X;Buy banana
 O;Soon or later
