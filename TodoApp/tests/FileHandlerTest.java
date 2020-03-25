@@ -51,7 +51,7 @@ public class FileHandlerTest {
     assertNotEquals(todo.getDescription(),
         fileHandler.convertAStringToATodo(line).getDescription());
   }
-  
+
   @Test
   public void addTodo() {
     fileHandler.intitAllTodosFromFile();

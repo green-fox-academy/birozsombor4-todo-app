@@ -76,42 +76,42 @@ public class FileHandler {
     return line;
   }
 
-  public void removeTodo(int whichTodo){
-    if (this.todos.size() < whichTodo){
+  public void removeTodo(int whichTodo) {
+    if (this.todos.size() < whichTodo) {
       System.out.println("Unable to remove: index out of bound");
     } else {
-      this.todos.remove(whichTodo-1);
+      this.todos.remove(whichTodo - 1);
       writeTodosToTheFile();
     }
   }
 
   public void completeTodo(int whichTodo) {
-    if (this.todos.size() < whichTodo){
+    if (this.todos.size() < whichTodo) {
       System.out.println("Unable to complete: index out of bound");
     } else {
-      this.todos.get(whichTodo-1).setItCompleted(true);
+      this.todos.get(whichTodo - 1).setItCompleted(true);
       writeTodosToTheFile();
     }
   }
 
   public void completeAllTodo() {
-    for (Todo td : this.todos){
+    for (Todo td : this.todos) {
       td.setItCompleted(true);
     }
     writeTodosToTheFile();
   }
 
   public void uncompleteTodo(int whichTodo) {
-    if (this.todos.size() < whichTodo){
+    if (this.todos.size() < whichTodo) {
       System.out.println("Unable to uncomplete: index out of bound");
     } else {
-      this.todos.get(whichTodo-1).setItCompleted(false);
+      this.todos.get(whichTodo - 1).setItCompleted(false);
       writeTodosToTheFile();
     }
   }
 
   public void uncompleteAllTodo() {
-    for (Todo td : this.todos){
+    for (Todo td : this.todos) {
       td.setItCompleted(false);
     }
     writeTodosToTheFile();

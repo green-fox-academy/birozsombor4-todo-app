@@ -39,7 +39,7 @@ public class Print {
     }
   }
 
-  private void printOutOneTask(Todo todo, int counter){
+  public void printOutOneTask(Todo todo, int counter){
     System.out.println(counter + " - " + (todo.isItCompleted() ? "[X]" : "[ ]") + " " + todo.getDescription());
   }
 
