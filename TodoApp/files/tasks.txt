@@ -3,3 +3,4 @@ O;Buy milk
 X;Do homework
 O;Feed the monkey
 X;Buy banana
+O;Do the project

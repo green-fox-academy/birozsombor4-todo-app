@@ -11,13 +11,17 @@ public class FileHandler {
   private Path fileLocation = Paths.get("files/tasks.txt");
   private List<Todo> todos = new ArrayList<>();
 
-  public void addTodo(Todo newTodo){
+  public void addTodo(Todo newTodo) {
     todos.add(newTodo);
     writeTodosToTheFile();
   }
 
   private void writeTodosToTheFile() {
-
+    try {
+      Files.write(fileLocation, convertListOfTodosToListOfString(this.todos));
+    } catch (IOException e) {
+      System.out.println("Something went wrong with writing.");
+    }
   }
 
 
@@ -59,16 +63,18 @@ public class FileHandler {
     return todoHolder;
   }
 
-  private Todo convertATodoToAString(String line) {
-    Todo todoHolder = new Todo();
-    String[] boolAndDesc = line.split(";");
-    if (boolAndDesc[0].equals("X")) {
-      todoHolder.setItCompleted(true);
-    } else {
-      todoHolder.setItCompleted(false);
+  private List<String> convertListOfTodosToListOfString(List<Todo> todos) {
+    List<String> lines = new ArrayList<>();
+    for (Todo todo : todos) {
+      lines.add(convertATodoToAString(todo));
     }
-    todoHolder.setDescription(boolAndDesc[1]);
-    return todoHolder;
+    return lines;
   }
+
+  private String convertATodoToAString(Todo todo) {
+    String line = (todo.isItCompleted() ? "X" : "O") + ";" + todo.getDescription();
+    return line;
+  }
+
 
 }

@@ -12,13 +12,17 @@ public class Main {
     /*if (args.length == 0) {
       print.printUsage();
     }*/
-
-
+/*
+    if (args[0].equals("-l")) {
       //print.listTasks(fileHandler.getTodos());
+    }*/
+
+    /*if (args[0].equals("-a")) {
+      fileHandler.addTodo(new Todo("Do the project", false));
+    }*/
+
+    
 
 
-    if (args[0].equals("-a")) {
-
-    }
   }
 }
