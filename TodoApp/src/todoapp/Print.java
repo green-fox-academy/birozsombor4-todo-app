@@ -13,16 +13,29 @@ public class Print {
     System.out.println("\t-c\tCompletes a task");
   }
 
-  public void listTasks(List<Todo> listOfTodos) {
+  public void listTasks(List<Todo> listOfTodos, boolean listAll) {
     if (listOfTodos.size() == 0) {
       System.out.println("No todos for today! :)");
     } else {
       int counter = 1;
-      for (Todo td : listOfTodos) {
-        System.out.println(counter + " - " + (td.isItCompleted() ? "[X]" : "[ ]") + " " + td.getDescription());
-        counter++;
+      if (listAll == true){
+        for (Todo td : listOfTodos) {
+          printOutOneTask(td,counter);
+          counter++;
+        }
+      } else {
+        for (Todo td : listOfTodos) {
+          if (!td.isItCompleted()){
+            printOutOneTask(td,counter);
+            counter++;
+          }
+        }
       }
     }
+  }
+
+  private void printOutOneTask(Todo todo, int counter){
+    System.out.println(counter + " - " + (todo.isItCompleted() ? "[X]" : "[ ]") + " " + todo.getDescription());
   }
 
   public void checkOneTask(int wichTodo) {

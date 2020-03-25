@@ -22,7 +22,10 @@ public class ArgumentHandler {
     } else {
       switch (arguments[0]) {
         case "-l":
-          list();
+          listUndoneTasks();
+          break;
+        case "-la":
+          listAllTask();
           break;
         case "-a":
           add();
@@ -40,9 +43,17 @@ public class ArgumentHandler {
     }
   }
 
-  private void list() {
+  private void listAllTask() {
     if (this.arguments.length == 1) {
-      print.listTasks(fileHandler.getTodos());
+      print.listTasks(fileHandler.getTodos(), true);
+    } else {
+      System.out.println("No other arguments needed for listing.");
+    }
+  }
+
+  private void listUndoneTasks() {
+    if (this.arguments.length == 1) {
+      print.listTasks(fileHandler.getTodos(), false);
     } else {
       System.out.println("No other arguments needed for listing.");
     }
