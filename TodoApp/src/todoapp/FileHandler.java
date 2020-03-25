@@ -85,5 +85,35 @@ public class FileHandler {
     }
   }
 
+  public void completeTodo(int whichTodo) {
+    if (this.todos.size() < whichTodo){
+      System.out.println("Unable to complete: index out of bound");
+    } else {
+      this.todos.get(whichTodo-1).setItCompleted(true);
+      writeTodosToTheFile();
+    }
+  }
 
+  public void completeAllTodo() {
+    for (Todo td : this.todos){
+      td.setItCompleted(true);
+    }
+    writeTodosToTheFile();
+  }
+
+  public void uncompleteTodo(int whichTodo) {
+    if (this.todos.size() < whichTodo){
+      System.out.println("Unable to uncomplete: index out of bound");
+    } else {
+      this.todos.get(whichTodo-1).setItCompleted(false);
+      writeTodosToTheFile();
+    }
+  }
+
+  public void uncompleteAllTodo() {
+    for (Todo td : this.todos){
+      td.setItCompleted(false);
+    }
+    writeTodosToTheFile();
+  }
 }

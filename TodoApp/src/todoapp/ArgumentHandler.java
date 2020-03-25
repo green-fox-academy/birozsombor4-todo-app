@@ -36,9 +36,62 @@ public class ArgumentHandler {
         case "-c":
           check();
           break;
+        case "-x":
+          complete();
+          break;
+        case "-xa":
+          completeAll();
+          break;
+        case "-o":
+          uncomplete();
+          break;
+        case "-oa":
+          uncompletAll();
+          break;
         default:
           System.out.println("Unsupported argument.");
           break;
+      }
+    }
+  }
+
+  private void uncompletAll() {
+    if (this.arguments.length == 1) {
+      fileHandler.uncompleteAllTodo();
+    } else {
+      System.out.println("No other arguments needed for uncomplete all tasks.");
+    }
+  }
+
+  private void uncomplete() {
+    if (this.arguments.length == 1) {
+      System.out.println("Unable to uncomplete: no index provided");
+    } else {
+      try {
+        fileHandler.uncompleteTodo(Integer.valueOf(arguments[1]));
+      } catch (NumberFormatException e) {
+        System.out.println("Unable to uncomplete: index is not a number");
+      }
+    }
+  }
+
+  private void completeAll() {
+    if (this.arguments.length == 1) {
+      fileHandler.completeAllTodo();
+    } else {
+      System.out.println("No other arguments needed for complete all tasks.");
+    }
+
+  }
+
+  private void complete() {
+    if (this.arguments.length == 1) {
+      System.out.println("Unable to complete: no index provided");
+    } else {
+      try {
+        fileHandler.completeTodo(Integer.valueOf(arguments[1]));
+      } catch (NumberFormatException e) {
+        System.out.println("Unable to complete: index is not a number");
       }
     }
   }

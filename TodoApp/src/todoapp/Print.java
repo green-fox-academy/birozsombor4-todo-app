@@ -8,9 +8,14 @@ public class Print {
     System.out.println("=============================\n");
     System.out.println("Command line arguments: ");
     System.out.println("\t-l\tList all the tasks");
+    System.out.println("\t-la\tList all undone tasks");
     System.out.println("\t-a\tAdds a new task");
     System.out.println("\t-r\tRemoves a task");
-    System.out.println("\t-c\tCompletes a task");
+    System.out.println("\t-c\tChecks a task");
+    System.out.println("\t-x\tCompletes a task");
+    System.out.println("\t-xa\tCompletes all tasks");
+    System.out.println("\t-o\tUncompletes a task");
+    System.out.println("\t-oa\tUncompletes all tasks");
   }
 
   public void listTasks(List<Todo> listOfTodos, boolean listAll) {
