@@ -14,9 +14,9 @@ public class Print {
   }
 
   public void listTasks(List<Todo> listOfTodos) {
-    if (listOfTodos.size() == 0){
+    if (listOfTodos.size() == 0) {
       System.out.println("No todos for today! :)");
-    }else {
+    } else {
       int counter = 1;
       for (Todo td : listOfTodos) {
         System.out.println(counter + " - " + (td.isItCompleted() ? "[X]" : "[ ]") + " " + td.getDescription());
@@ -25,7 +25,14 @@ public class Print {
     }
   }
 
-
+  public void checkOneTask(int wichTodo) {
+    if (FileHandler.getTodos().size() < wichTodo){
+      System.out.println("Unable to check: index out of bound");
+    } else {
+      System.out.println(wichTodo + " - " + (FileHandler.getTodos().get(wichTodo-1).isItCompleted() ?
+          "[X]" : "[ ]") + " " + FileHandler.getTodos().get(wichTodo-1).getDescription());
+    }
+  }
 
 
 }

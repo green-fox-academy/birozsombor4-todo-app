@@ -9,9 +9,9 @@ import java.util.List;
 
 public class FileHandler {
   private Path fileLocation = Paths.get("files/tasks.txt");
-  private List<Todo> todos = new ArrayList<>();
+  private static List<Todo> todos = new ArrayList<>();
 
-  public List<Todo> getTodos() {
+  public static List<Todo> getTodos() {
     return todos;
   }
 
@@ -77,8 +77,12 @@ public class FileHandler {
   }
 
   public void removeTodo(int whichTodo){
-    this.todos.remove(whichTodo-1);
-    writeTodosToTheFile();
+    if (this.todos.size() < whichTodo){
+      System.out.println("Unable to remove: index out of bound");
+    } else {
+      this.todos.remove(whichTodo-1);
+      writeTodosToTheFile();
+    }
   }
 
 
