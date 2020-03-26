@@ -12,19 +12,19 @@ public class Todo {
     this.isItCompleted = isItCompleted;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setItCompleted(boolean itCompleted) {
-    isItCompleted = itCompleted;
-  }
-
   public String getDescription() {
     return description;
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public boolean isItCompleted() {
     return isItCompleted;
+  }
+
+  public void setItCompleted(boolean itCompleted) {
+    isItCompleted = itCompleted;
   }
 }

@@ -1,0 +1,3 @@
+O;Walk the dog
+X;Drink beer
+X;Eat a sandwich

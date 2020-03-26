@@ -8,11 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-  private Path fileLocation = Paths.get("files/tasks.txt");
+  private Path fileLocation;
   private static List<Todo> todos = new ArrayList<>();
 
   public static List<Todo> getTodos() {
     return todos;
+  }
+
+  public Path getFileLocation() {
+    return fileLocation;
+  }
+
+  public void setFileLocation(Path fileLocation) {
+    this.fileLocation = fileLocation;
   }
 
 
@@ -23,7 +31,7 @@ public class FileHandler {
   private List<Todo> readAllTodo() {
     List<String> lines = new ArrayList<>();
     try {
-      lines = Files.readAllLines(fileLocation);
+      lines = Files.readAllLines(this.fileLocation);
     } catch (IOException e) {
       System.out.println("Something goes wrong with reading of the file.");
     }
@@ -57,7 +65,7 @@ public class FileHandler {
 
   private void writeTodosToTheFile() {
     try {
-      Files.write(fileLocation, convertListOfTodosToListOfString(this.todos));
+      Files.write(this.fileLocation, convertListOfTodosToListOfString(this.todos));
     } catch (IOException e) {
       System.out.println("Something went wrong with writing.");
     }
@@ -115,5 +123,28 @@ public class FileHandler {
       td.setItCompleted(false);
     }
     writeTodosToTheFile();
+  }
+
+  public void changeFilePath(String userName) {
+    if (checkTheFileNamesForUsers(userName)) {
+      System.out.println("You have selected this [" + userName + "] user");
+      this.fileLocation = Paths.get("files/" + userName + ".txt");
+    } else {
+      System.out.println("You created a new user!");
+      this.fileLocation = Paths.get("files/" + userName + ".txt");
+      try {
+        Files.createFile(this.fileLocation);
+      } catch (IOException e) {
+        System.out.println("Something goes wrong with creating the file.");
+      }
+    }
+  }
+
+  public boolean checkTheFileNamesForUsers(String userName) {
+    if (Files.exists(Paths.get("files/" + userName + ".txt"))) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
