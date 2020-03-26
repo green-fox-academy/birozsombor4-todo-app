@@ -8,7 +8,7 @@ public class TodoTest {
   Todo todo;
 
   @Before
-  public void before(){
+  public void before() {
     todo = new Todo("Bake some cookie", false);
   }
 

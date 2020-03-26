@@ -1,9 +1,15 @@
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import todoapp.FileHandler;
 import todoapp.Todo;
@@ -11,9 +17,30 @@ import todoapp.Todo;
 public class FileHandlerTest {
   FileHandler fileHandler;
 
+  @BeforeClass
+  public static void beforeClass() {
+    try {
+      Files.createFile(Paths.get("files/test.txt"));
+    } catch (IOException e) {
+      System.out.println("Something wrong with creating.");
+    }
+  }
+
+  @AfterClass
+  public static void afterClass() {
+    try {
+      Files.delete(Paths.get("files/test.txt"));
+      Files.delete(Paths.get("files/create.txt"));
+    } catch (IOException e) {
+      System.out.println("Something wrong with deleting.");
+    }
+  }
+
   @Before
   public void before() {
     fileHandler = new FileHandler();
+    fileHandler.setFileLocation(Paths.get("files/test.txt"));
+    fileHandler.intitAllTodosFromFile();
   }
 
   @Test
@@ -154,6 +181,33 @@ public class FileHandlerTest {
       }
     }
     assertFalse(result);
+  }
 
+  @Test
+  public void changeFilePath_withExistingUser_SelectExistingFile() {
+    String beforeChanging = fileHandler.getFileLocation().toString();
+    fileHandler.changeFilePath("test");
+    String afterChanging = fileHandler.getFileLocation().toString();
+    assertEquals(beforeChanging, afterChanging);
+  }
+
+  @Test
+  public void changeFilePath_withNotExistingUser_CreateNewFile() {
+    boolean beforeCreatingExists = Files.exists(Paths.get("files/create.txt"));
+    fileHandler.changeFilePath("create");
+    boolean afterCreatingExists = Files.exists(Paths.get("files/create.txt"));
+    assertNotEquals(beforeCreatingExists, afterCreatingExists);
+  }
+
+  @Test
+  public void checkTheFileNamesForUser_withExistingFile_ReturnTrue() {
+    boolean result = fileHandler.checkTheFileNamesForUsers("test");
+    assertTrue(result);
+  }
+
+  @Test
+  public void checkTheFileNamesForUser_withNotExistingFile_ReturnFalse() {
+    boolean result = fileHandler.checkTheFileNamesForUsers("testasd");
+    assertFalse(result);
   }
 }
